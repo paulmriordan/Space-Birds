@@ -16,7 +16,7 @@ public class RepeatingBackground : MonoBehaviour
     {
         float centre = (this.transform.position.y + m_backgroundHeight * 0.5f);
         float currOffset = m_camera.position.y - centre;
-        if (Mathf.Abs(currOffset) > m_backgroundHeight * 0.5f)
+        if (Mathf.Abs(currOffset) > m_backgroundHeight)
         {
             Vector3 pos = this.transform.position;
             pos.y += 2.0f * m_backgroundHeight * (currOffset < 0 ? - 1.0f : 1.0f);

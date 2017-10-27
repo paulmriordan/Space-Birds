@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
     [SerializeField]
-    GameObject m_enemyPrefab;
+    GameObject m_enemyPrefab = null;
 
     [SerializeField]
     float m_enemyHzOffset = 1.0f;
 
     [SerializeField]
     float m_enemySpacingMin = 5.0f;
+    [SerializeField]
     float m_enemySpacingMax = 15.0f;
 
     [SerializeField]
@@ -19,8 +20,6 @@ public class EnemySpawner : MonoBehaviour {
 
     private Transform m_camera;
     private Pool<Enemy> m_enemyPool;
-    private List<Enemy> m_activeEnemies;
-    private float m_maxHeightReached;
     private float m_nextSpawnHeight = 0;
 
     void Start()
@@ -29,7 +28,7 @@ public class EnemySpawner : MonoBehaviour {
         m_enemyPool = new Pool<Enemy>( () => {return Instantiate(m_enemyPrefab).GetComponent<Enemy>(); } ) { };
         SetNextSpawnPosition();
     }
-	
+    
 	void Update ()
     {
         if ((m_nextSpawnHeight - m_camera.transform.position.y) < m_spawnAheadDistance)
@@ -47,6 +46,7 @@ public class EnemySpawner : MonoBehaviour {
     void CleanupEnemy(Enemy enemyInstance)
     {
         enemyInstance.gameObject.SetActive(false);
+        enemyInstance.OnEnemyDead -= CleanupEnemy;
         m_enemyPool.Deallocate(enemyInstance);
     }
 
@@ -65,7 +65,7 @@ public class EnemySpawner : MonoBehaviour {
         pos.y = m_nextSpawnHeight;
         instance.transform.position = pos;
 
-        instance.transform.localScale = new Vector3(left ? -1.0f : 1.0f, 1.0f, 1.0f);
+        instance.transform.localRotation = Quaternion.Euler(0, 0, left ? 180.0f : 0);
 
         instance.OnEnemyDead += CleanupEnemy;
     }
