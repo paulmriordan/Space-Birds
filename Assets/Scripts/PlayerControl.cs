@@ -8,6 +8,8 @@ public class PlayerControl : MonoBehaviour {
     [SerializeField]
     float ForceUp = 1.0f;
 
+    public event System.Action OnPlayerKilled;
+
     Rigidbody2D m_rigidBody;
     
 	void Start () {
@@ -19,4 +21,18 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetKey(KeyCode.Space))
             m_rigidBody.AddForce(Vector2.up * ForceUp);
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        ResetToStart();
+    }
+
+    void ResetToStart()
+    {
+        transform.position = new Vector2(transform.position.x, 0);
+        if (OnPlayerKilled != null)
+        {
+            OnPlayerKilled();
+        }
+    }
 }

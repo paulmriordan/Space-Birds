@@ -27,6 +27,7 @@ public class EnemySpawner : MonoSingleton<EnemySpawner> {
     {
         m_camera = Camera.main.transform;
         m_enemyPool = new Pool<Enemy>( () => {return Instantiate(m_enemyPrefab).GetComponent<Enemy>(); } ) { };
+
         SetNextSpawnPosition();
     }
     
@@ -36,7 +37,22 @@ public class EnemySpawner : MonoSingleton<EnemySpawner> {
             yield return enemy;
     }
 
-	void Update ()
+    public void ResetAllEnemies()
+    {
+        m_nextSpawnHeight = 0;
+
+        // Hold enemies in new structure while deleting, otherwise, hashset will be invalidated
+        List<Enemy> enemies = new List<Enemy>();
+        foreach (var enemy in m_activeEnemies)
+            enemies.Add(enemy);
+
+        for (int i = 0; i < enemies.Count; i++)
+            CleanupEnemy(enemies[i]);
+
+        SetNextSpawnPosition();
+    }
+
+    void Update ()
     {
         if ((m_nextSpawnHeight - m_camera.transform.position.y) < m_spawnAheadDistance)
         {

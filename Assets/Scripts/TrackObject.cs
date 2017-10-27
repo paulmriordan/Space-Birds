@@ -15,6 +15,16 @@ public class TrackObject : MonoBehaviour {
 
     private Vector2 m_currVel;
 
+    public void MoveToTargetInstantly()
+    {
+        m_currVel = Vector2.zero;
+        var targetPos = m_objectToTrack.position;
+        targetPos.z = this.transform.position.z;
+        targetPos += m_offset;
+        targetPos.y = Mathf.Max(m_minY, targetPos.y);
+        this.transform.position = targetPos;
+    }
+
     void FixedUpdate ()
     {
         if (m_objectToTrack != null)
