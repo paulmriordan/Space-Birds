@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletPool : MonoSingleton<BulletPool> {
+public class BulletPool : MonoBehaviour {
 
     public GameObject m_bulletPrefab;
 

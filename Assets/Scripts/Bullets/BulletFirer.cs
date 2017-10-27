@@ -12,6 +12,9 @@ public class BulletFirer : MonoBehaviour {
     [SerializeField]
     Vector3 m_bulletVelocity = new Vector3(-1.0f, 0, 0);
 
+    [SerializeField]
+    BulletFactory.E_BulletType m_type;
+
     private float m_nextBulletTime;
 
     private void Start()
@@ -30,7 +33,7 @@ public class BulletFirer : MonoBehaviour {
 
     void FireBullet()
     {
-        Bullet bullet = BulletPool.Instance.Create();
+        Bullet bullet = BulletFactory.Instance.Create(m_type);
         
         bullet.Fire(this.transform.position, this.transform.rotation * m_bulletVelocity);
     }
