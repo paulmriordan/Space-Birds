@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour {
     [SerializeField]
     float lifeTime = 3.0f;
 
-    public event Action<Bullet> OnTimeout;
+    public event Action<Bullet> OnFinished;
 
     private Rigidbody2D m_rigidbody;
 
@@ -27,8 +27,14 @@ public class Bullet : MonoBehaviour {
         // Cleanup bullet after life time expires
         StartCoroutine(CoroutineHelper.ExecuteAfterTime(lifeTime, () =>
         {
-            if (OnTimeout != null)
-                OnTimeout(this);
+            if (OnFinished != null)
+                OnFinished(this);
         }));
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (OnFinished != null)
+            OnFinished(this);
     }
 }

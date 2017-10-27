@@ -20,14 +20,14 @@ public class BulletPool : MonoBehaviour {
     public Bullet Create()
     {
         var inst = m_bulletPool.Allocate();
-        inst.OnTimeout += CleanupBullet;
+        inst.OnFinished += CleanupBullet;
         inst.gameObject.SetActive(true);
         return inst;
     }
 
     void CleanupBullet(Bullet bulletInstance)
     {
-        bulletInstance.OnTimeout -= CleanupBullet;
+        bulletInstance.OnFinished -= CleanupBullet;
         bulletInstance.gameObject.SetActive(false);
         bulletInstance.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         m_bulletPool.Deallocate(bulletInstance);

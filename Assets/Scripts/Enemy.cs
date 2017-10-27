@@ -24,6 +24,11 @@ public class Enemy : MonoBehaviour {
             if (OnEnemyDead != null)
                 OnEnemyDead(this);
         }
+    }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (OnEnemyDead != null)
+            OnEnemyDead(this);
     }
 }
