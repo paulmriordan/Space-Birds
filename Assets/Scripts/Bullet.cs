@@ -20,8 +20,11 @@ public class Bullet : MonoBehaviour {
 
     public void Fire(Vector3 from, Vector2 velocity)
     {
-        m_rigidbody.transform.position = from;
+        transform.position = from;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(velocity.y, velocity.x));
         StartCoroutine(CoroutineHelper.ExecuteAfterFrame(() => { m_rigidbody.AddForce(velocity, ForceMode2D.Impulse); }));
+
+        // Cleanup bullet after life time expires
         StartCoroutine(CoroutineHelper.ExecuteAfterTime(lifeTime, () =>
         {
             if (OnTimeout != null)
