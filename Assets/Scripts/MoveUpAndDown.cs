@@ -17,15 +17,13 @@ public class MoveUpAndDown : MonoBehaviour {
     private float m_nextMoveTime;
 
     private Rigidbody2D m_rigidbody;
-
-	// Use this for initialization
+    
 	void Start ()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
         SetNextMoveTime();
 	}
 	
-	// Update is called once per frame
 	void Update ()
     {
         if (Time.time > m_nextMoveTime)

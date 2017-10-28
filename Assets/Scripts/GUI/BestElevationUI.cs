@@ -20,11 +20,21 @@ public class BestElevationUI : MonoBehaviour
     
     void Update()
     {
+        UpdateBestElevation();
+        UpdateBestElevationText();
+    }
+
+    void UpdateBestElevation()
+    {
         if (m_objectToTrack.transform.position.y > m_best)
         {
             m_best = m_objectToTrack.transform.position.y;
             PlayerPrefs.SetFloat("bestElevation", m_best);
         }
+    }
+
+    void UpdateBestElevationText()
+    {
         StringBuilder sb = new StringBuilder();
         sb.Append("Best: ");
         sb.Append(m_best.ToString("0"));

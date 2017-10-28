@@ -77,18 +77,18 @@ public class EnemySpawner : MonoSingleton<EnemySpawner> {
     void SpawnEnemy()
     {
         var instance = m_enemyPool.Allocate();
-
         instance.gameObject.SetActive(true);
-
         instance.transform.parent = this.transform;
 
         bool left = (UnityEngine.Random.value < 0.5f);
 
+        // set position
         Vector3 pos = Vector3.zero;
         pos.x = (left ? -1.0f : 1.0f) * m_enemyHzOffset;
         pos.y = m_nextSpawnHeight;
         instance.transform.position = pos;
 
+        // set rotation
         instance.transform.localRotation = Quaternion.Euler(0, 0, left ? 180.0f : 0);
 
         instance.OnEnemyDead += CleanupEnemy;

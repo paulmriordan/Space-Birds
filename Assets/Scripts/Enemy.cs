@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour {
                 break;
         }
     }
-
+    
     void KillIfPlayerHasPassedMe()
     {
         if ((m_camera.transform.position.y - this.transform.position.y) > KillAfterDistancePassed)
@@ -61,6 +61,9 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Adds dissolve script, which updates the shader param to dissolve the enemy
+    /// </summary>
     void AddDissolveScript()
     {
         var dissolveScript = gameObject.AddComponent<Dissolve>();

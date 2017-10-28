@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Add this script to a sprite which uses the Dissolve shader.
+/// StartDissolve will begin the animation
+/// </summary>
 public class Dissolve : MonoBehaviour {
 
     public event System.Action OnDissolved;
@@ -15,6 +19,10 @@ public class Dissolve : MonoBehaviour {
         m_material = GetComponent<SpriteRenderer>().material;
     }
 
+    /// <summary>
+    /// Start dissolve the current sprite over time
+    /// </summary>
+    /// <param name="time">Time over which to dissolve</param>
     public void StartDissolve(float time)
     {
         m_dissolveTime = time;

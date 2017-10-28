@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Rotates this gameobject towards enemy. Flips on y access turn ensure object remains upright
+/// </summary>
 public class AutoTurnToNearestEnemy : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update ()
     {
         var nearestEnemy = GetNearestEnemy();
@@ -17,7 +14,7 @@ public class AutoTurnToNearestEnemy : MonoBehaviour {
         {
             bool left = nearestEnemy.transform.position.x < this.transform.position.x;
             this.transform.rotation = Quaternion.Euler(0, 0, left ? 0 : 180.0f);
-            this.transform.localScale = new Vector3(1.0f, left ? 1.0f : -1.0f, 1.0f);
+            this.transform.localScale = new Vector3(1.0f, left ? 1.0f : -1.0f, 1.0f); // flip to remain upright
         }
 	}
 

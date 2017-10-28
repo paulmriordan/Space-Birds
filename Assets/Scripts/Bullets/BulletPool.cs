@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Creates an IFireable. IFireable is deallocated when IFireable::OnFinished event is fired
+/// </summary>
 public class BulletPool : MonoBehaviour {
 
     public GameObject m_bulletPrefab;

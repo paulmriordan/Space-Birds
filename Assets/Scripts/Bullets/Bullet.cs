@@ -18,11 +18,14 @@ public class Bullet : MonoBehaviour, IFireable {
         m_rigidbody = GetComponent<Rigidbody2D>();    
     }
 
+    /// <summary>
+    /// Fires a bullet from a position with a velocity
+    /// </summary>
     public void Fire(Vector3 from, Vector2 velocity)
     {
         transform.position = from;
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Rad2Deg * Mathf.Atan2(velocity.y, velocity.x));
-        StartCoroutine(CoroutineHelper.ExecuteAfterFrame(() => { m_rigidbody.AddForce(velocity, ForceMode2D.Impulse); }));
+        m_rigidbody.AddForce(velocity, ForceMode2D.Impulse);
 
         // Cleanup bullet after life time expires
         StartCoroutine(CoroutineHelper.ExecuteAfterTime(lifeTime, () =>

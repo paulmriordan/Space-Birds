@@ -18,6 +18,11 @@ public class ElevationUI : MonoBehaviour
     
     void Update()
     {
+        UpdateElevationText();
+    }
+    
+    void UpdateElevationText()
+    {
         StringBuilder sb = new StringBuilder();
         sb.Append("Elevation: ");
         sb.Append(m_objectToTrack.transform.position.y.ToString("0"));
