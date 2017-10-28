@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletFirer : MonoBehaviour {
+public class RandomBulletFirer : MonoBehaviour {
 
     [SerializeField]
     float m_bulletTimeMin = 5.0f;
@@ -33,7 +33,7 @@ public class BulletFirer : MonoBehaviour {
 
     void FireBullet()
     {
-        Bullet bullet = BulletFactory.Instance.Create(m_type);
+        IFireable bullet = BulletFactory.Instance.Create(m_type);
         
         bullet.Fire(this.transform.position, this.transform.rotation * m_bulletVelocity);
     }
