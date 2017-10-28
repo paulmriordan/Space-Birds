@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour, IFireable {
 
     [SerializeField]
     float lifeTime = 3.0f;

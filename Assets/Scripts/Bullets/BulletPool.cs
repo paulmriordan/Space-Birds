@@ -17,7 +17,7 @@ public class BulletPool : MonoBehaviour {
         });
     }
 	
-    public Bullet Create()
+    public IFireable Create()
     {
         var inst = m_bulletPool.Allocate();
         inst.OnFinished += CleanupBullet;
