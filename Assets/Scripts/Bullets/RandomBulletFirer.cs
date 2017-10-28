@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomBulletFirer : MonoBehaviour {
+public class RandomBulletFirer : MonoBehaviour, IBulletFirer
+{
 
     [SerializeField]
     float m_bulletTimeMin = 5.0f;
@@ -16,15 +17,22 @@ public class RandomBulletFirer : MonoBehaviour {
     BulletFactory.E_BulletType m_type;
 
     private float m_nextBulletTime;
+    private bool m_enabled = true;
 
-    private void Start()
+    private void OnEnable()
     {
+        m_nextBulletTime = Time.time;
         SetNextBulletTime();
+    }
+
+    public void EnableFiring(bool enabled)
+    {
+        m_enabled = enabled;
     }
 
     void Update ()
     {
-		if (Time.time > m_nextBulletTime)
+		if (m_enabled && Time.time > m_nextBulletTime)
         {
             FireBullet();
             SetNextBulletTime();
