@@ -13,4 +13,4 @@
 	- Used post-processing stack for HDR bloom
 	- Vertex color bloom oscillation
 	- Enemy dissolve shader effect
-	- Bird that know
+	- A bird that can fly very very high
