@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomBulletFirer : MonoBehaviour, IBulletFirer
+public class RandomBulletFirer : MonoBehaviour, IWeapon
 {
 
     [SerializeField]

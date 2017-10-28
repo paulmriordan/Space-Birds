@@ -16,13 +16,13 @@ public class Enemy : MonoBehaviour {
     float DissolveTime = 0.2f;
 
     private Transform m_camera;
-    private IBulletFirer[] m_weapons;
+    private IWeapon[] m_weapons;
     private E_EnemyState m_state = E_EnemyState.alive;
 
     void Awake ()
     {
         m_camera = Camera.main.transform;
-        m_weapons = GetComponentsInChildren<IBulletFirer>();
+        m_weapons = GetComponentsInChildren<IWeapon>();
     }
 
     private void OnEnable()

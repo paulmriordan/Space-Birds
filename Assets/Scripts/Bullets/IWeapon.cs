@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEditor;
 
-public interface IBulletFirer
+public interface IWeapon
 {
     void EnableFiring(bool enabled);
 }
