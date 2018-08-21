@@ -1,8 +1,6 @@
 # Spacebirds
 
-- How to run
-	- You can open the scene in Unity
-	- Run the exe in the Build folder
+Short demo project showcasing basic proficiency with the Unity engine, shaders, and SOLID coding principles
 
 - Features
 	- Infinite gameplay with repeating background
