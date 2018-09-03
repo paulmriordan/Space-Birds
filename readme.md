@@ -2,7 +2,7 @@
 
 Short demo project showcasing basic proficiency with the Unity engine, shaders, and SOLID coding principles
 
-![screencap.png](screencap.png)
+![demo.gif](demo.gif)
 
 - Features
 	- Infinite gameplay with repeating background
