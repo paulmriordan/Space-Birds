@@ -2,6 +2,8 @@
 
 Short demo project showcasing basic proficiency with the Unity engine, shaders, and SOLID coding principles
 
+![screencap.png](screencap.png)
+
 - Features
 	- Infinite gameplay with repeating background
 	- Pooled enemy and bullet instancing
